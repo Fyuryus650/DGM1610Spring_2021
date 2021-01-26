@@ -833,6 +833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f613d1f736923147a3f82682ddf149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hInput: 0
+  fInput: 0
 --- !u!1001 &425238951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1016,6 +1019,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1082,12 +1086,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.10744912, y: -0, z: -0, w: 0.99421066}
-  m_LocalPosition: {x: 0.17, y: 6.29, z: -18.58}
+  m_LocalPosition: {x: 0.17, y: 6, z: -18.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 12.337001, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2bf74c53fa179488b72a731ba681dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 421298354}
 --- !u!1001 &568537022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4110,7 +4127,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 104122, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
       propertyPath: m_Name
-      value: Veh_Armor_Car_01
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 489324, guid: aea2a6cdcc9d7944090d528486ebaee1, type: 3}
       propertyPath: m_RootOrder
