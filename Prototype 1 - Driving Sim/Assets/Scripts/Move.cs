@@ -5,11 +5,13 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     // Makeup of a variable- Access modifier(public) -> data type(float) -> name(speed)
-    public float speed = 10.0f;
+    private float speed = 20.0f;
 
-    public float hInput;
+    private float turnSpeed = 35.0f;
 
-    public float fInput;
+    private float hInput;
+
+    private float fInput;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +22,14 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Gathers the inputs for the controls
         hInput = Input.GetAxis("Horizontal");
         fInput = Input.GetAxis("Vertical");
 
+        // Makes a vehicle go forward and backwards
         transform.Translate(Vector3.forward * Time.deltaTime * speed * fInput);
-        transform.Translate(Vector3.right * Time.deltaTime * speed * hInput);
+
+        // Makes a vehicle go left and right
+        transform.Rotate(Vector3.up, turnSpeed * hInput * Time.deltaTime);
     }
 }
