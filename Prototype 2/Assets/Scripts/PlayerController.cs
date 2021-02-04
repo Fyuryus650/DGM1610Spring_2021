@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public float speed = 15.0f;
+
     private float hInput;
+
+    private float xRange = 20.5f;
+
+    public GameObject projectilePrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,14 +23,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         hInput = Input.GetAxis("Horizontal");
-        if(transform.position.x < -15)
+
+        //If statements to indicate barriers to the player. Player ill not be able to move past these boundaries\
+        //If the player reaches the xRange the player will not move past it
+        if(transform.position.x < -xRange)
         {
-            transform.position = new Vector3(-15, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
-        if(transform.position.x > 15)
+        if(transform.position.x > xRange)
         {
-            transform.position = new Vector3(15, transform.position.y, transform.position.z);
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            //Launch the projectile, 3 parts, What is being instantiated, where its being instantiated, what orientation the object is in
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+
+
+        //normal movement on the x axis
         transform.Translate(Vector3.right * hInput * speed * Time.deltaTime);
         
     }
