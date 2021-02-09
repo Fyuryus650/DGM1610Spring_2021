@@ -5,13 +5,12 @@ using UnityEngine;
 public class DestroyPrefab : MonoBehaviour
 {
     public float topBound = 35.0f;
-    public float bottomeBound = -15.0f;
+    public float bottomBound = -15.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Destroy(gameObject, 2);   <--- this is how to destroy with time
-    }
+   
+
+    //Destroy(gameObject, 2);   <--- this is how to destroy with time
+  
 
     // Update is called once per frame
     void Update()
@@ -20,8 +19,9 @@ public class DestroyPrefab : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if(transform.position.z < bottomeBound)
+        else if(transform.position.z < bottomBound)
         {
+            Debug.Log("GAME OVER");
             Destroy(gameObject);
         }
     }
