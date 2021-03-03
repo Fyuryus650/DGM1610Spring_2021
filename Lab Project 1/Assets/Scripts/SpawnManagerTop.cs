@@ -56,4 +56,8 @@ public class SpawnManagerTop : MonoBehaviour
             Instantiate(obstaclePrefabsSides[1], spawnPos, obstaclePrefabsSides[1].transform.rotation);
         }
     }
+    void SpawnClouds()
+    {
+
+    }
 }
