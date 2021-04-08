@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
             playerAnim.SetTrigger("Jump_trig");
             dirtParticle.Stop();
-            playerAudio.PlayOneShot(jumpSound, 1.0f);
+            playerAudio.PlayOneShot(jumpSound, 0.5f);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetInteger("DeathType_int ", 1);
             explosionParticles.Play();
             dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1.0f);
+            playerAudio.PlayOneShot(crashSound, 0.5f);
         }
     }
 }
