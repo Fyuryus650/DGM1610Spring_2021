@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 5733038026002859551}
   - component: {fileID: 1120171429186080462}
   - component: {fileID: 7867463651562405573}
-  - component: {fileID: 4060683491643342884}
   - component: {fileID: -8209472989552643915}
+  - component: {fileID: 6553163095977780267}
+  - component: {fileID: -6635910775406720493}
   m_Layer: 0
   m_Name: PlanePrefab
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,24 +91,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475076022042413657}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4060683491643342884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475076022042413657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf2290d168e2d94ca8cf37710de9b98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2.5
 --- !u!114 &-8209472989552643915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +108,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6bec8a22411784cb05ce65bbb783a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6553163095977780267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475076022042413657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7d04d8fc097c64abbcae249c451b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5
+  pointValue: 10
+--- !u!65 &-6635910775406720493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475076022042413657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
