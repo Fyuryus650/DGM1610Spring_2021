@@ -15,6 +15,7 @@ public class MissleBehaviour : MonoBehaviour
         transform.Translate(Vector3.up * speed * Time.deltaTime);
         //sets effect for missle
         contrail.gameObject.SetActive(true);
+        StartCoroutine(MissleLifetime());
 
         //Destroys left over missles if game ends
         if (!gameManager.isGameActive)
