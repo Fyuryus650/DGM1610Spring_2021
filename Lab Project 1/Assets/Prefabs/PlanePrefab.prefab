@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7867463651562405573}
   - component: {fileID: -8209472989552643915}
   - component: {fileID: 6553163095977780267}
-  - component: {fileID: -6635910775406720493}
   m_Layer: 0
   m_Name: PlanePrefab
   m_TagString: Target
@@ -94,7 +93,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.2, y: 1, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-8209472989552643915
 MonoBehaviour:
@@ -121,17 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
+  lifeLostValue: -1
   pointValue: 10
---- !u!65 &-6635910775406720493
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475076022042413657}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  player: {fileID: 7698031348510002919, guid: da0b7bf040ad7b94bb131bd2c2d53887, type: 3}
+  explosion: {fileID: 198194127032045410, guid: 46876a2780737ec45a19d62f88e5ce56,
+    type: 3}

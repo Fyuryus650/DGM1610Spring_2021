@@ -5,8 +5,10 @@ using UnityEngine;
 public class ObstacleMovement : MonoBehaviour
 {
     public float speed = 2.5f;
+    public int lifeLostValue = -1;
     public int pointValue;
     private GameManager gameManager;
+    public ParticleSystem explosion;
 
 
     private void Start()
@@ -38,12 +40,15 @@ public class ObstacleMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(gameManager.isGameActive)
+        if (gameManager.isGameActive == true)
         {
             if (other.CompareTag("Player"))
             {
-                gameManager.lifeCounter = gameManager.lifeCounter - 1;
-                Destroy(other.gameObject);
+                //updates the Life counter in the Game manager
+                gameManager.UpdateLife(lifeLostValue);
+                Destroy(gameObject);
+                Instantiate(explosion, gameObject.transform.position, explosion.transform.rotation);
+                //checks if player is out of lives and declares Game over if lives are at 0
                 gameManager.GameOver();
             }
             else
@@ -51,7 +56,6 @@ public class ObstacleMovement : MonoBehaviour
                 Destroy(gameObject);
                 gameManager.UpdateScore(pointValue);
             }
-        }
-        
+        }       
     }
 }

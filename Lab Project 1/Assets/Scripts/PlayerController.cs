@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         //Dictates the boundaries of the player on the screen
-        if(transform.position.x > 15)
+        if (transform.position.x > 15)
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
@@ -67,5 +67,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, zRangeMin);
         }
+    }
+
+    public void GameOverDestroy()
+    {
+        Destroy(gameObject);
     }
 }

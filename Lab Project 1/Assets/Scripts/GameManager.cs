@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     //StartVariables associated with spawning obstacles
     public List<GameObject> obstaclePrefab;
+    private PlayerController player;
     public float spawnLimitXleft = -15f;
     public float spawnLimitXright = 15f;
     public float spawnLimitZtop = 15f;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI lifeCounterText;
+    public TextMeshProUGUI resetButtonText;
     public GameObject titleMenu;
     private int score;
     public int lifeCounter;
@@ -39,16 +41,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);           
             SpawnFromTop();
             SpawnFromSides();            
-        }
-    }
-
-    IEnumerator HardWave()
-    {
-        while(isGameActive == true)
-        {
-            yield return new WaitForSeconds(spawnRate -0.5f);
-            SpawnFromTop();
-            SpawnFromSides();
         }
     }
     void SpawnFromTop()
@@ -90,12 +82,22 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public void UpdateLife(int lifeLost)
+    {
+        lifeCounter += lifeLost;
+        lifeCounterText.text = "Life: " + lifeCounter;
+    }
+
     public void GameOver()
     {
         if(lifeCounter == 0)
         {
+            player = GameObject.Find("Player").GetComponent<PlayerController>();
+            isGameActive = false;
             gameOverText.gameObject.SetActive(true);
             resetButton.gameObject.SetActive(true);
+            resetButtonText.text = "Reset";
+            player.GameOverDestroy();
         }
 
     }
@@ -108,10 +110,8 @@ public class GameManager : MonoBehaviour
     public void StartGame(int difficulty)
     {
         UpdateScore(0);
-        lifeCounter = 3;
+        UpdateLife(0);
         isGameActive = true;
-        scoreText.text = "Score: " + score;
-        lifeCounterText.text = "Life: " + lifeCounter;
         titleMenu.gameObject.SetActive(false);
         spawnRate /= difficulty;
         StartCoroutine(SpawnObstacles());
