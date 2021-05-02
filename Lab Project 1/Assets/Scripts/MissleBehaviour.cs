@@ -5,24 +5,15 @@ using UnityEngine;
 public class MissleBehaviour : MonoBehaviour
 {
     public float speed;
-    public ParticleSystem explosion, contrail;
+    public ParticleSystem explosion, contrail, secondaryExplosion;
     private Rigidbody missleRB;
 
     private GameManager gameManager;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        missleRB = GetComponent<Rigidbody>();
-        StartCoroutine(MissleLifetime());
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
+        //sets effect for missle
         contrail.gameObject.SetActive(true);
 
         //Destroys left over missles if game ends
@@ -36,7 +27,8 @@ public class MissleBehaviour : MonoBehaviour
     IEnumerator MissleLifetime()
     {
         {
-            yield return new WaitForSeconds(8);
+            //destroys missle after 4 seconds
+            yield return new WaitForSeconds(4);
             DestroyGameObject();
         }
         
@@ -52,6 +44,7 @@ public class MissleBehaviour : MonoBehaviour
             DestroyGameObject();
         }
         Instantiate(explosion, transform.position, explosion.transform.rotation);
+        Instantiate(secondaryExplosion, gameObject.transform.position, secondaryExplosion.transform.rotation);
     }
 
     void DestroyGameObject()

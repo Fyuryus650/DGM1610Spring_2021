@@ -11,20 +11,12 @@ public class GameManager : MonoBehaviour
     //StartVariables associated with spawning obstacles
     public List<GameObject> obstaclePrefab;
     private PlayerController player;
-    public float spawnLimitXleft = -15f;
-    public float spawnLimitXright = 15f;
-    public float spawnLimitZtop = 15f;
-    public float spawnLimitZbottom = 3.7f;
-    private float spawnPosY = 10.0f;
-    private float spawnPosZ = 12f;
+    private float spawnLimitXleft = -15f, spawnLimitXright = 15f, spawnLimitZtop = 15f, spawnLimitZbottom = 3.7f, spawnPosZ = 12f, spawnPosY = 10.0f;
     public float startDelay = 1.0f;
 
     public bool isGameActive;
 
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI lifeCounterText;
-    public TextMeshProUGUI resetButtonText;
+    public TextMeshProUGUI lifeCounterText, resetButtonText, gameOverText, scoreText;
     public GameObject titleMenu;
     private int score;
     public int lifeCounter;
@@ -43,13 +35,24 @@ public class GameManager : MonoBehaviour
             SpawnFromSides();            
         }
     }
+
+    //adds points for being alive
+    IEnumerator TimeAliveScore()
+    {
+        while(isGameActive == true)
+        {
+            yield return new WaitForSeconds(1);
+            UpdateScore(1);
+        }
+    }
     void SpawnFromTop()
     {
+        //random spawns for obstacles at the top
+        Vector3 spawnPos1 = new Vector3(Random.Range(spawnLimitXleft, spawnLimitXright), spawnPosY, spawnPosZ);
+        Quaternion newRotation = Quaternion.Euler(new Vector3(-90, 180, 0));
+        Instantiate(obstaclePrefab[1], spawnPos1, newRotation);
         Vector3 spawnPos = new Vector3(Random.Range(spawnLimitXleft, spawnLimitXright), spawnPosY, spawnPosZ);
-
-        int obstacleIndex = Random.Range(0, 2);
-
-        Instantiate(obstaclePrefab[obstacleIndex], spawnPos, obstaclePrefab[0].transform.rotation);
+        Instantiate(obstaclePrefab[0], spawnPos, obstaclePrefab[0].transform.rotation);
     }
 
     void SpawnFromSides()
@@ -75,10 +78,10 @@ public class GameManager : MonoBehaviour
             Instantiate(obstaclePrefab[2], spawnPos, obstaclePrefab[2].transform.rotation);
         }
     }
-
+    //pulls from obstaclemove script to add to score
     public void UpdateScore(int scoreToAdd)
     {
-        score += scoreToAdd;
+        score = score + scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
@@ -115,5 +118,6 @@ public class GameManager : MonoBehaviour
         titleMenu.gameObject.SetActive(false);
         spawnRate /= difficulty;
         StartCoroutine(SpawnObstacles());
+        StartCoroutine(TimeAliveScore());
     }
 }

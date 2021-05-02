@@ -8,6 +8,7 @@ TagManager:
   - Right
   - FxTemporaire
   - Target
+  - Missle
   layers:
   - Default
   - TransparentFX

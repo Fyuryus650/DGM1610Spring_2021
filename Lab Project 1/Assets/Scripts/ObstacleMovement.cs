@@ -8,7 +8,7 @@ public class ObstacleMovement : MonoBehaviour
     public int lifeLostValue = -1;
     public int pointValue;
     private GameManager gameManager;
-    public ParticleSystem explosion;
+    public ParticleSystem explosion, secondaryExplosion;
 
 
     private void Start()
@@ -35,24 +35,37 @@ public class ObstacleMovement : MonoBehaviour
 
     void MoveDown()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //general movement code for moving downwards towards the bottom of screen
+        if(gameObject.CompareTag("Target"))
+        {
+            //some imported models were created weird, adjusted with the code
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (gameManager.isGameActive == true)
         {
+            //if the player hits an obstacle initiates code
             if (other.CompareTag("Player"))
             {
                 //updates the Life counter in the Game manager
                 gameManager.UpdateLife(lifeLostValue);
                 Destroy(gameObject);
                 Instantiate(explosion, gameObject.transform.position, explosion.transform.rotation);
+                Instantiate(secondaryExplosion, gameObject.transform.position, secondaryExplosion.transform.rotation);
                 //checks if player is out of lives and declares Game over if lives are at 0
                 gameManager.GameOver();
             }
             else
             {
+                //if obstacle did not run into player they are destroyed and score is added to player
                 Destroy(gameObject);
                 gameManager.UpdateScore(pointValue);
             }
