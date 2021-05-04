@@ -16,11 +16,14 @@ public class MissleBehaviour : MonoBehaviour
         //sets effect for missle
         contrail.gameObject.SetActive(true);
         StartCoroutine(MissleLifetime());
+        GameOver();
+    }
 
+    private void GameOver()
+    {
         //Destroys left over missles if game ends
-        if (!gameManager.isGameActive)
+        if (gameManager.isGameActive == false)
         {
-            Debug.Log("GameOver");
             DestroyGameObject();
         }
     }

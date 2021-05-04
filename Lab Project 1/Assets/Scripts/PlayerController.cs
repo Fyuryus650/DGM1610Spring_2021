@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 15.0f;
     public float acceleration = 1.0f;
     private float hInput, vInput;
-    private float missleSpawnOffsetZ = 2f;
+    private float missleSpawnOffsetZ = 1f;
 
     private float xRange = 15.0f;
     private float zRangeMax = 4.7f;
