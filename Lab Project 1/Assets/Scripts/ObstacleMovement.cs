@@ -10,10 +10,10 @@ public class ObstacleMovement : MonoBehaviour
     private GameManager gameManager;
     public ParticleSystem explosion, secondaryExplosion;
 
-
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
     }
 
     void Update()
@@ -27,6 +27,7 @@ public class ObstacleMovement : MonoBehaviour
                 transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
         }
+        //moves the object towards the direction of the player
         else
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
@@ -36,7 +37,7 @@ public class ObstacleMovement : MonoBehaviour
     void MoveDown()
     {
         //general movement code for moving downwards towards the bottom of screen
-        if(gameObject.CompareTag("Target"))
+        if(gameObject.CompareTag("Top"))
         {
             //some imported models were created weird, adjusted with the code
             transform.Translate(Vector3.down * speed * Time.deltaTime);
@@ -52,7 +53,7 @@ public class ObstacleMovement : MonoBehaviour
     {
         if (gameManager.isGameActive == true)
         {
-            //if the player hits an obstacle initiates code
+            //if the obstacle hits a player
             if (other.CompareTag("Player"))
             {
                 //updates the Life counter in the Game manager
@@ -65,10 +66,9 @@ public class ObstacleMovement : MonoBehaviour
             }
             else
             {
-                //if obstacle did not run into player they are destroyed and score is added to player
-                Destroy(gameObject);
+                //if the object is destroyed by any other means it adds the score to the player
                 gameManager.UpdateScore(pointValue);
             }
-        }       
+        }
     }
 }

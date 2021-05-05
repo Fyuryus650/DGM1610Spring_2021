@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour
             resetButtonText.text = "Reset";
             player.GameOverDestroy();
         }
-
     }
 
     public void ResetGame()

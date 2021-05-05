@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float turnSpeed = 15.0f;
-    public float acceleration = 1.0f;
-    private float hInput, vInput;
-    private float missleSpawnOffsetZ = 1f;
-
-    private float xRange = 15.0f;
-    private float zRangeMax = 4.7f;
-    private float zRangeMin = -2.45f;
-
+    public float turnSpeed = 15.0f, acceleration = 1.0f;
+    private float hInput, vInput, missleSpawnOffsetZ = 1f, xRange = 15.0f, zRangeMax = 4.7f, zRangeMin = -2.45f;
     private GameObject player;
     public GameObject misslePrefab;
     private GameManager gameManager;
-    private MissleBehaviour missleBehaviour;
-
     public AudioSource engine;
 
     void Start()
@@ -25,7 +16,6 @@ public class PlayerController : MonoBehaviour
         player = GameObject.Find("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         engine = gameObject.GetComponent<AudioSource>();
-        missleBehaviour = GameObject.Find("Missle").GetComponent<MissleBehaviour>();
     }
 
     // Update is called once per frame
@@ -35,6 +25,7 @@ public class PlayerController : MonoBehaviour
         vInput = Input.GetAxis("Vertical");
         GameObject[] missle = GameObject.FindGameObjectsWithTag("Missle");
         int missleCount = missle.Length;
+
 
         if (gameManager.isGameActive == true)
         {

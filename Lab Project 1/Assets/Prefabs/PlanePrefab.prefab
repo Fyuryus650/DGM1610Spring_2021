@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6553163095977780267}
   m_Layer: 0
   m_Name: PlanePrefab
-  m_TagString: Target
+  m_TagString: Top
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

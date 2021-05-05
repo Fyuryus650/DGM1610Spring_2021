@@ -10,12 +10,16 @@ public class MissleBehaviour : MonoBehaviour
 
     private GameManager gameManager;
 
+    private void Start()
+    {
+        //Starts life counter for missle and starts the contrail particle system
+        StartCoroutine(MissleLifetime());
+        contrail.gameObject.SetActive(true);
+    }
+
     void Update()
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
-        //sets effect for missle
-        contrail.gameObject.SetActive(true);
-        StartCoroutine(MissleLifetime());
         GameOver();
     }
 
@@ -35,11 +39,12 @@ public class MissleBehaviour : MonoBehaviour
             yield return new WaitForSeconds(4);
             DestroyGameObject();
         }
-        
-        
     }
     private void OnTriggerEnter(Collider other)
     {
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
+        Instantiate(secondaryExplosion, gameObject.transform.position, secondaryExplosion.transform.rotation);
+
         //on collision with an obstacle it will delete the obstacle and the missle.
         if (!other.gameObject.CompareTag("Player"))
         {
@@ -47,8 +52,7 @@ public class MissleBehaviour : MonoBehaviour
             Destroy(other.gameObject);
             DestroyGameObject();
         }
-        Instantiate(explosion, transform.position, explosion.transform.rotation);
-        Instantiate(secondaryExplosion, gameObject.transform.position, secondaryExplosion.transform.rotation);
+        
     }
 
     void DestroyGameObject()
